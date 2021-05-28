@@ -19,7 +19,7 @@ public class DiscordMessage implements Listener {
         if(wh.equalsIgnoreCase("PUT_HERE_WEB_HOOK")){
             return;
         }
-        String message = Loader.fc.getString("Prefix")!=null?Loader.fc.getString(""):e.getPlayer().getName() + " » "+e.getMessage();
+        String message = Loader.fc.getString("Prefix")!=null?Loader.fc.getString("Prefix").replace("%player%",e.getPlayer().getName()).replace("%message%",e.getMessage()):e.getPlayer().getName() + " » "+e.getMessage();
         sendmessage(message);
     }
     private static void sendmessage(String message){
