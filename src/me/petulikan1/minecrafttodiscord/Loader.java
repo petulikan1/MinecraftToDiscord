@@ -1,5 +1,6 @@
 package me.petulikan1.minecrafttodiscord;
 
+import me.petulikan1.minecrafttodiscord.command.DiscordMessageCmd;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -15,9 +16,10 @@ public class Loader extends JavaPlugin {
     public void onEnable() {
         config();
         Bukkit.getPluginManager().registerEvents(new DiscordMessage(),this);
+        Bukkit.getPluginCommand("dmsg").setExecutor(new DiscordMessageCmd());
     }
-    private static void config(){
-        ffo = new File("plugins/MinecraftToDiscord/");
+    public static void config(){
+        ffo = new File("plugins/DiscordMessage/");
         if (!ffo.mkdirs()) {
             try {
                 ffo.mkdir();
@@ -35,7 +37,7 @@ public class Loader extends JavaPlugin {
         }
         fc=YamlConfiguration.loadConfiguration(ff);
         fc.addDefault("Webhook","PUT_HERE_WEB_HOOK");
-        fc.addDefault("Format","%player% » %message%");
+        fc.addDefault("Format","[%player%] » %message%");
         fc.options().copyDefaults(true).copyHeader(true);
         saveCfg();
     }

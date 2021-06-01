@@ -1,4 +1,6 @@
-name: DiscordTest
+name: DiscordMessages
 main: me.petulikan1.minecrafttodiscord.Loader
 version: 1.0
 author: petulikan1
+commands:
+  dmsg:
